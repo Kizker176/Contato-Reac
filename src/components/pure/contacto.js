@@ -1,23 +1,22 @@
 
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import { contact } from '../../models/contacto.class';
 
 
-const ContactoComponent = ({ contact }) => {
+const ContactoComponent = ({ contacto }) => {
+    const [conectado, setConectado] = useState(contacto);
     return (
         <div>
-            <h2>Nombre: {contact.name}</h2>
-            <h3>Apellido: {contact.Apellido}</h3>
-            <h4>Email: {contact.Email}</h4>
-            <h5>Contacto: {contact.Conectado ? 'En Línea' : 'No Disponible'}</h5>
+            <h5>{conectado === false ? 'Contacto no disponible' : 'Contacto En linea'}</h5>
+            <button onClick={() => setConectado(!conectado)}>{conectado === false ? 'Conectado' : 'Desconectado'}</button>
+
         </div>
     );
 };
 
 
 ContactoComponent.propTypes = {
-    contacto: PropTypes.instanceOf(contact)
+    contacto: PropTypes.bool,
 };
 
 
